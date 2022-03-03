@@ -20,7 +20,7 @@ class ProviderGalleryController extends Controller
     }
     public function show($id){
 
-        $user = ProviderGallery::whereId($id)->first();
+        $user = ProviderGallery::whereProvider_id($id)->get();
         if(isset($user)){
             return $user;
         }
