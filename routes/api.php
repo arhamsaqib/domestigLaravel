@@ -10,6 +10,7 @@ use App\Http\Controllers\BookingsController;
 use App\Http\Controllers\BookingSubmissionController;
 use App\Http\Controllers\BookingRequestController;
 use App\Http\Controllers\ProviderGalleryController;
+use App\Http\Controllers\InvoicesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,3 +35,4 @@ Route::apiResource('/bookings',BookingsController::class);
 Route::apiResource('/booking-submission',BookingSubmissionController::class);
 Route::apiResource('/booking-requests',BookingRequestController::class);
 Route::apiResource('/provider-gallery',ProviderGalleryController::class);
+Route::apiResource('/invoices',InvoicesController::class);

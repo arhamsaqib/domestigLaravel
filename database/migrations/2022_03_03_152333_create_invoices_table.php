@@ -15,13 +15,13 @@ return new class extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
-            $table->string('bookings_id');
+            $table->string('booking_id');
             $table->string('provider_id');
             $table->string('customer_id');
-            $table->string('extra_work');
-            $table->string('extra_work_charges');
+            $table->string('extra_work')->nullable();
+            $table->string('extra_work_charges')->nullable();
             $table->string('amount');
-            $table->string('total_amount');
+            $table->string('total_amount')->nullable();
             $table->timestamps();
         });
     }
