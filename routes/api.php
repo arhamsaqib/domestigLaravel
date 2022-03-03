@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProviderController;
 use App\Http\Controllers\BookingsController;
+use App\Http\Controllers\BookingSubmissionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +29,4 @@ Route::apiResource('/admin',AdminController::class);
 Route::apiResource('/customer',CustomerController::class);
 Route::apiResource('/provider',ProviderController::class);
 Route::apiResource('/bookings',BookingsController::class);
+Route::apiResource('/booking-submission',BookingSubmissionController::class);
