@@ -11,6 +11,8 @@ use App\Http\Controllers\BookingSubmissionController;
 use App\Http\Controllers\BookingRequestController;
 use App\Http\Controllers\ProviderGalleryController;
 use App\Http\Controllers\InvoicesController;
+use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\CategoryServiceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,3 +38,5 @@ Route::apiResource('/booking-submission',BookingSubmissionController::class);
 Route::apiResource('/booking-requests',BookingRequestController::class);
 Route::apiResource('/provider-gallery',ProviderGalleryController::class);
 Route::apiResource('/invoices',InvoicesController::class);
+Route::apiResource('/categories',CategoriesController::class);
+Route::apiResource('/category-services',CategoryServiceController::class);
