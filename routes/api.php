@@ -9,6 +9,7 @@ use App\Http\Controllers\ProviderController;
 use App\Http\Controllers\BookingsController;
 use App\Http\Controllers\BookingSubmissionController;
 use App\Http\Controllers\BookingRequestController;
+use App\Http\Controllers\ProviderGalleryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,3 +33,4 @@ Route::apiResource('/provider',ProviderController::class);
 Route::apiResource('/bookings',BookingsController::class);
 Route::apiResource('/booking-submission',BookingSubmissionController::class);
 Route::apiResource('/booking-requests',BookingRequestController::class);
+Route::apiResource('/provider-gallery',ProviderGalleryController::class);
