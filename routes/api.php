@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProviderController;
+use App\Http\Controllers\BookingsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +27,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::apiResource('/admin',AdminController::class);
 Route::apiResource('/customer',CustomerController::class);
 Route::apiResource('/provider',ProviderController::class);
+Route::apiResource('/bookings',BookingsController::class);
