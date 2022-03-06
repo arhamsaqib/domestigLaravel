@@ -13,6 +13,7 @@ use App\Http\Controllers\ProviderGalleryController;
 use App\Http\Controllers\InvoicesController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\CategoryServiceController;
+use App\Http\Controllers\ProviderIncomingRequestsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,3 +41,7 @@ Route::apiResource('/provider-gallery',ProviderGalleryController::class);
 Route::apiResource('/invoices',InvoicesController::class);
 Route::apiResource('/categories',CategoriesController::class);
 Route::apiResource('/category-services',CategoryServiceController::class);
+
+Route::get('/provider-incoming-requests/{id}', [ProviderIncomingRequestsController::class,'getProviderIncomingRequests']);
+Route::post('/reject-request', [ProviderIncomingRequestsController::class,'onRejectRequest']);
+Route::post('/accept-request', [ProviderIncomingRequestsController::class,'onAcceptRequest']);

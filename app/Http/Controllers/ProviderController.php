@@ -8,30 +8,33 @@ use App\Models\Providers;
 class ProviderController extends Controller
 {
     public function store(Request $request){
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255',
-            'phone' => 'required|string',
-            'country' => 'required|string',
-            'location' => 'sometimes|string',
-            'avatar' => 'sometimes|string',
-            'longitude' => 'sometimes|string',
-            'latitude' => 'sometimes|string',
-            'fuid' => 'required|string',
+        $data = $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255',
+            'phone' => 'required',
+            'country' => 'required',
+            'location' => 'sometimes',
+            'avatar' => 'sometimes',
+            'longitude' => 'sometimes',
+            'latitude' => 'sometimes',
+            'fuid' => 'required',
+            'status' =>'required'
         ]);
 
-        $new= Providers::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'country' => $request->country,
-            'location' => $request->location,
-            'avatar' => $request->avatar,
-            'longitude' => $request->longitude,
-            'latitude' => $request->latitude,
-            'fuid' => $request->fuid,
-            'status' => 'active',
-        ]);
+        // $new= Providers::create([
+        //     'name' => $request->name,
+        //     'email' => $request->email,
+        //     'phone' => $request->phone,
+        //     'country' => $request->country,
+        //     'location' => $request->location,
+        //     'avatar' => $request->avatar,
+        //     'longitude' => $request->longitude,
+        //     'latitude' => $request->latitude,
+        //     'fuid' => $request->fuid,
+        //     'status' => 'active',
+        // ]);
+        $collection = collect($data)->filter()->all();
+        $new = Providers::create($collection);
         return $new;
     }
     public function show($id){
