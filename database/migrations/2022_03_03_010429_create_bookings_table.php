@@ -19,6 +19,9 @@ return new class extends Migration
             $table->string('schedule')->nullable();
             $table->string('provider_id')->nullable();
             $table->string('payment_type')->nullable();
+            $table->string('services')->nullable();
+            $table->string('category_name')->nullable();
+            $table->string('verification_code')->nullable();
             $table->string('instructions')->nullable();
             $table->string('instructions_image')->nullable();
             //$table->string('services')->nullable();

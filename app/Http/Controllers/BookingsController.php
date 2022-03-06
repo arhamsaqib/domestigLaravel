@@ -17,10 +17,14 @@ class BookingsController extends Controller
             'date' => 'sometimes',
             'time' => 'sometimes',
             'payment_type' => 'sometimes',
+            'services' => 'required',
+            'category_name' => 'sometimes',
+            'verification_code' => 'required',
             'instructions' => 'sometimes',
             'instructions_image' => 'sometimes',
             'latitude' => 'sometimes',
             'longitude' => 'sometimes',
+            'services' => 'sometimes',
             'location' => 'sometimes',
             'status' => 'sometimes|string',
         ]);
@@ -32,7 +36,7 @@ class BookingsController extends Controller
     }
     public function show($id){
 
-        $user = Bookings::whereId($id)->first();
+        $user = Bookings::whereCustomer_id($id)->get();
         if(isset($user)){
             return $user;
         }
