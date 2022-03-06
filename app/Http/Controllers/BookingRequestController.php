@@ -8,15 +8,28 @@ use App\Models\BookingRequests;
 class BookingRequestController extends Controller
 {
     public function store(Request $request){
-        $data = $request->validate([
-            'booking_id' => 'required',
-            'provider_id' => 'required',
-            'status' => 'required',
-        ]);
+        // $data = $request->validate([
+        //     'booking_id' => 'required',
+        //     'provider_id' => 'required',
+        //     'status' => 'required',
+        // ]);
         
-        $collection = collect($data)->filter()->all();
-        $new = BookingRequests::create($collection);
-        return $new;
+        foreach($request->providers as $data)
+        {
+            $container = new BookingRequests([
+                'booking_id' => $request->booking_id,
+                'provider_id' => $data['id'],
+                'status' => 'pending'
+              ]);
+    
+            $container->save();
+        }
+    
+        return response()->json('Successfully added');
+
+        // $collection = collect($data)->filter()->all();
+        // $new = BookingRequests::create($collection);
+        // return $new;
      
     }
     public function show($id){

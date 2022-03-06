@@ -12,7 +12,7 @@ class BookingsController extends Controller
     public function store(Request $request){
         $data = $request->validate([
             'customer_id' => 'required|max:255',
-            'provider_id' => 'required|max:255',
+            'provider_id' => 'sometimes|max:255',
             'schedule' => 'required',
             'date' => 'sometimes',
             'time' => 'sometimes',
@@ -24,7 +24,7 @@ class BookingsController extends Controller
             'location' => 'sometimes',
             'status' => 'sometimes|string',
         ]);
-
+        
         $collection = collect($data)->filter()->all();
         $new = Bookings::create($collection);
         return $new;

@@ -37,7 +37,7 @@ class ProviderController extends Controller
     public function show($id){
 
         //$user = User::find($id);
-        $user = Providers::whereId($id)->first();
+        $user = Providers::whereFuid($id)->first();
         if(isset($user)){
             return $user;
         }

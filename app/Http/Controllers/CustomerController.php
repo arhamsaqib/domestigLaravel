@@ -8,36 +8,40 @@ use App\Models\Customer;
 class CustomerController extends Controller
 {
     public function store(Request $request){
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255',
-            'phone' => 'required|string',
-            'country' => 'required|string',
-            'location' => 'sometimes|string',
-            'avatar' => 'sometimes|string',
-            'longitude' => 'sometimes|string',
-            'latitude' => 'sometimes|string',
-            'fuid' => 'required|string',
+        $data = $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255',
+            'phone' => 'required',
+            'country' => 'sometimes',
+            'location' => 'sometimes',
+            'avatar' => 'sometimes',
+            'longitude' => 'sometimes',
+            'latitude' => 'sometimes',
+            'fuid' => 'required',
+            'status' => 'required'
         ]);
 
-        $new= Customer::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'country' => $request->country,
-            'location' => $request->location,
-            'avatar' => $request->avatar,
-            'longitude' => $request->longitude,
-            'latitude' => $request->latitude,
-            'fuid' => $request->fuid,
-            'status' => 'active',
-        ]);
+        // $new= Customer::create([
+        //     'name' => $request->name,
+        //     'email' => $request->email,
+        //     'phone' => $request->phone,
+        //     'country' => $request->country,
+        //     'location' => $request->location,
+        //     'avatar' => $request->avatar,
+        //     'longitude' => $request->longitude,
+        //     'latitude' => $request->latitude,
+        //     'fuid' => $request->fuid,
+        //     'status' => 'active',
+        // ]);
+        $collection = collect($data)->filter()->all();
+        $new = Customer::create($collection);
         return $new;
+        //return $new;
     }
     public function show($id){
 
         //$user = User::find($id);
-        $user = Customer::whereId($id)->first();
+        $user = Customer::whereFuid($id)->first();
         if(isset($user)){
             return $user;
         }
