@@ -45,4 +45,22 @@ class ProviderIncomingRequestsController extends Controller
         $acceptBooking = Bookings::where(['id'=>$bookingId])->update(['status'=>'in-progress','provider_id'=>$providerId]);
         return $reject;
     }
+    
+    public function viewProviderInprogressBooking($id){
+        
+        $booking = Bookings::where(['provider_id'=>$id,'status'=>'in-progress'])->latest()->first();
+        if(isset($booking)){
+            return $booking;
+        }
+            
+        return response()->json([
+            'message' => 'Record not found.'
+        ], 404);
+    }
+
+    public function markBookingAsVerified($id){
+        
+        $booking = Bookings::whereId($id)->update(['verified'=>'true']);
+        return $booking;
+    }
 }

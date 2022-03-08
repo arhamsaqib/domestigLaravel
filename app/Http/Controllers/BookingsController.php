@@ -19,6 +19,7 @@ class BookingsController extends Controller
             'payment_type' => 'sometimes',
             'services' => 'required',
             'category_name' => 'sometimes',
+            'verified' => 'sometimes',
             'verification_code' => 'required',
             'instructions' => 'sometimes',
             'instructions_image' => 'sometimes',

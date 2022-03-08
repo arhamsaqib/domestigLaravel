@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('services')->nullable();
             $table->string('category_name')->nullable();
             $table->string('verification_code')->nullable();
+            $table->string('verified')->nullable();
             $table->string('instructions')->nullable();
             $table->string('instructions_image')->nullable();
             //$table->string('services')->nullable();

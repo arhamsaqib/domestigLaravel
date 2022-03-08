@@ -57,4 +57,16 @@ class ProviderController extends Controller
         $user = Providers::where('id', $id)->delete();
         return $user;
     }
+    public function getProviderById($id){
+
+        //$user = User::find($id);
+        $user = Providers::whereId($id)->first();
+        if(isset($user)){
+            return $user;
+        }
+    
+        return response()->json([
+            'message' => 'Record not found.'
+        ], 404);
+    }
 }

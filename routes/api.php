@@ -14,6 +14,7 @@ use App\Http\Controllers\InvoicesController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\CategoryServiceController;
 use App\Http\Controllers\ProviderIncomingRequestsController;
+use App\Http\Controllers\ChatsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,3 +46,15 @@ Route::apiResource('/category-services',CategoryServiceController::class);
 Route::get('/provider-incoming-requests/{id}', [ProviderIncomingRequestsController::class,'getProviderIncomingRequests']);
 Route::post('/reject-request', [ProviderIncomingRequestsController::class,'onRejectRequest']);
 Route::post('/accept-request', [ProviderIncomingRequestsController::class,'onAcceptRequest']);
+Route::get('/provider-inprogress-booking/{id}', [ProviderIncomingRequestsController::class,'viewProviderInprogressBooking']);
+Route::get('/verify-booking/{id}', [ProviderIncomingRequestsController::class,'markBookingAsVerified']);
+
+Route::get('/get-provider-by-id/{id}', [ProviderController::class,'getProviderById']);
+Route::get('/get-customer-by-id/{id}', [CustomerController::class,'getCustomerById']);
+
+Route::post('/show-booking-submission', [BookingSubmissionController::class,'showSubmission']);
+
+Route::get('/chats', 'ChatsController@index');
+Route::get('messages', 'ChatsController@fetchMessages');
+// Route::post('messages', 'ChatsController@sendMessage');
+Route::post('/messages', [ChatsController::class,'sendMessage']);

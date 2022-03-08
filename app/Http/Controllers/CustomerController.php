@@ -58,4 +58,17 @@ class CustomerController extends Controller
         $user = Customer::where('id', $id)->delete();
         return $user;
     }
+
+    public function getCustomerById($id){
+
+        //$user = User::find($id);
+        $user = Customer::whereId($id)->first();
+        if(isset($user)){
+            return $user;
+        }
+    
+        return response()->json([
+            'message' => 'Record not found.'
+        ], 404);
+    }
 }
