@@ -20,9 +20,15 @@ class ChatsController extends Controller
         return view('chat');
     }
 
-    public function fetchMessages()
+    public function fetchMessages(Request $request)
     {
-        return Message::with('user')->get();
+        $msgs = Message::where([
+            'provider_id' => $request->provider_id,
+            'booking_id' => $request->booking_id,
+            'customer_id' => $request->customer_id,
+        ])
+        ->get();
+        return $msgs;
     }
 
     public function sendMessage(Request $request)
@@ -41,5 +47,5 @@ class ChatsController extends Controller
         
         //return ['status' => 'Message Sent!'];
     }
-}
+}   
 

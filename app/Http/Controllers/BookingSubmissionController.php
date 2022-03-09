@@ -22,6 +22,24 @@ class BookingSubmissionController extends Controller
         return $new;
      
     }
+    public function update($bookingId,Request $request){
+       // return 'update time';
+        $data = $request->validate([
+            'booking_id' => 'required',
+            'provider_id' => 'required',
+            'time_taken' => 'sometimes',
+            'before_work_image' => 'sometimes',
+            'after_work_image' => 'sometimes',
+        ]);
+
+        $booking = BookingSubmission::where(['booking_id'=>$bookingId,'provider_id'=>$request->provider_id])->first();
+        
+        $collection = collect($data)->filter()->all();
+
+        $new = $booking->update($collection);
+        return $new;
+     
+    }
     public function show($id){
 
         $user = BookingSubmission::whereId($id)->first();

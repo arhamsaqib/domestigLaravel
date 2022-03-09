@@ -54,7 +54,7 @@ Route::get('/get-customer-by-id/{id}', [CustomerController::class,'getCustomerBy
 
 Route::post('/show-booking-submission', [BookingSubmissionController::class,'showSubmission']);
 
-Route::get('/chats', 'ChatsController@index');
-Route::get('messages', 'ChatsController@fetchMessages');
+//Route::get('messages', 'ChatsController@fetchMessages');
 // Route::post('messages', 'ChatsController@sendMessage');
 Route::post('/messages', [ChatsController::class,'sendMessage']);
+Route::post('/fetch-messages', [ChatsController::class,'fetchMessages']);
