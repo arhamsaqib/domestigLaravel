@@ -3,29 +3,27 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Invoices;
+use App\Models\ProviderReviews;
 
-class InvoicesController extends Controller
+class ProviderReviewsController extends Controller
 {
     public function store(Request $request){
         $data = $request->validate([
-            'booking_id' => 'required',
             'provider_id' => 'required',
             'customer_id' => 'required',
-            'extra_work' => 'sometimes',
-            'extra_work_charges' => 'sometimes',
-            'amount' => 'required',
-            'total_amount' => 'sometimes',
+            'booking_id' => 'required',
+            'review' => 'sometimes',
+            'stars' => 'sometimes',
         ]);
-        
         $collection = collect($data)->filter()->all();
-        $new = Invoices::create($collection);
+        $new = ProviderReviews::create($collection);
         return $new;
-     
+        //return $new;
     }
     public function show($id){
 
-        $user = Invoices::whereBooking_id($id)->first();
+        //$user = User::find($id);
+        $user = ProviderReviews::whereProvider_id($id)->get();
         if(isset($user)){
             return $user;
         }
@@ -35,11 +33,11 @@ class InvoicesController extends Controller
         ], 404);
     }
     public function index(){
-        $user = Invoices::all();
+        $user = ProviderReviews::all();
         return $user;
     }
     public function destroy($id){
-        $user = Invoices::where('id', $id)->delete();
+        $user = ProviderReviews::where('id', $id)->delete();
         return $user;
     }
 }

@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('location')->nullable();
             $table->string('avatar')->nullable();
             $table->string('status');
+            $table->string('working_status');
             $table->string('fuid');
             $table->string('longitude')->nullable();
             $table->string('latitude')->nullable();

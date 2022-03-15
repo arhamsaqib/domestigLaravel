@@ -37,6 +37,21 @@ class ProviderController extends Controller
         $new = Providers::create($collection);
         return $new;
     }
+    public function update($id,Request $request){
+        $data = $request->validate([
+            'phone' => 'sometimes',
+            'country' => 'sometimes',
+            'location' => 'sometimes',
+            'avatar' => 'sometimes',
+            'longitude' => 'sometimes',
+            'latitude' => 'sometimes',
+            'working_status' => 'sometimes',
+        ]);
+        $provider = Providers::whereId($id)->first();
+        $collection = collect($data)->filter()->all();
+        $new = $provider->update($collection);
+        return $new;
+    }
     public function show($id){
 
         //$user = User::find($id);

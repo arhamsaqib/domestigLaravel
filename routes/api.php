@@ -15,6 +15,8 @@ use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\CategoryServiceController;
 use App\Http\Controllers\ProviderIncomingRequestsController;
 use App\Http\Controllers\ChatsController;
+use App\Http\Controllers\ProviderReviewsController;
+use App\Http\Controllers\CustomerReviewsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,13 +37,18 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::apiResource('/admin',AdminController::class);
 Route::apiResource('/customer',CustomerController::class);
 Route::apiResource('/provider',ProviderController::class);
+
 Route::apiResource('/bookings',BookingsController::class);
+Route::get('/show-provider-bookings/{providerId}', [BookingsController::class,'providerBookings']);
+
 Route::apiResource('/booking-submission',BookingSubmissionController::class);
 Route::apiResource('/booking-requests',BookingRequestController::class);
 Route::apiResource('/provider-gallery',ProviderGalleryController::class);
 Route::apiResource('/invoices',InvoicesController::class);
 Route::apiResource('/categories',CategoriesController::class);
 Route::apiResource('/category-services',CategoryServiceController::class);
+Route::apiResource('/provider-reviews',ProviderReviewsController::class);
+Route::apiResource('/customer-reviews',CustomerReviewsController::class);
 
 Route::get('/provider-incoming-requests/{id}', [ProviderIncomingRequestsController::class,'getProviderIncomingRequests']);
 Route::post('/reject-request', [ProviderIncomingRequestsController::class,'onRejectRequest']);

@@ -35,9 +35,41 @@ class BookingsController extends Controller
         return $new;
      
     }
+    public function update($bookingId,Request $request){
+        $data = $request->validate([
+            'provider_id' => 'sometimes',
+            'verified' => 'sometimes',
+            'instructions' => 'sometimes',
+            'instructions_image' => 'sometimes',
+            'latitude' => 'sometimes',
+            'longitude' => 'sometimes',
+            'services' => 'sometimes',
+            'location' => 'sometimes',
+            'status' => 'sometimes',
+        ]);
+ 
+        $booking = Bookings::where(['id'=>$bookingId])->first();
+         
+         $collection = collect($data)->filter()->all();
+ 
+         $new = $booking->update($collection);
+         return $new;
+      
+     }
     public function show($id){
 
         $user = Bookings::whereCustomer_id($id)->get();
+        if(isset($user)){
+            return $user;
+        }
+    
+        return response()->json([
+            'message' => 'Record not found.'
+        ], 404);
+    }
+    public function providerBookings($id){
+
+        $user = Bookings::whereProvider_id($id)->get();
         if(isset($user)){
             return $user;
         }
