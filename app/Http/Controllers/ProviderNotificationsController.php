@@ -22,6 +22,21 @@ class ProviderNotificationsController extends Controller
         return $new;
         //return $new;
     }
+    public function update($id,Request $request){
+        $data = $request->validate([
+            'provider_id' => 'sometimes',
+            'customer_id' => 'sometimes',
+            'booking_id' => 'sometimes',
+            'category' => 'sometimes',
+            'description' => 'sometimes',
+            'status' => 'sometimes',
+        ]);
+        $n = ProviderNotifications::whereId($id)->first();
+        $collection = collect($data)->filter()->all();
+        $new = $n->update($collection);
+        return $new;
+        //return $new;
+    }
     public function show($id){
 
         $user = ProviderNotifications::whereProvider_id($id)->latest()->get();
