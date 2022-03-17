@@ -20,19 +20,6 @@ class ProviderController extends Controller
             'fuid' => 'required',
             'status' =>'required'
         ]);
-
-        // $new= Providers::create([
-        //     'name' => $request->name,
-        //     'email' => $request->email,
-        //     'phone' => $request->phone,
-        //     'country' => $request->country,
-        //     'location' => $request->location,
-        //     'avatar' => $request->avatar,
-        //     'longitude' => $request->longitude,
-        //     'latitude' => $request->latitude,
-        //     'fuid' => $request->fuid,
-        //     'status' => 'active',
-        // ]);
         $collection = collect($data)->filter()->all();
         $new = Providers::create($collection);
         return $new;

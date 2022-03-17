@@ -21,6 +21,7 @@ use App\Http\Controllers\BookingReviewsController;
 use App\Http\Controllers\ProviderNotificationsController;
 use App\Http\Controllers\CustomerNotificationsController;
 use App\Http\Controllers\ProviderServicesController;
+use App\Http\Controllers\ImageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -76,3 +77,4 @@ Route::post('/show-booking-submission', [BookingSubmissionController::class,'sho
 // Route::post('messages', 'ChatsController@sendMessage');
 Route::post('/messages', [ChatsController::class,'sendMessage']);
 Route::post('/fetch-messages', [ChatsController::class,'fetchMessages']);
+Route::post('/upload-image', [ImageController::class,'addimage']);
