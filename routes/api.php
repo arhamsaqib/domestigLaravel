@@ -17,6 +17,10 @@ use App\Http\Controllers\ProviderIncomingRequestsController;
 use App\Http\Controllers\ChatsController;
 use App\Http\Controllers\ProviderReviewsController;
 use App\Http\Controllers\CustomerReviewsController;
+use App\Http\Controllers\BookingReviewsController;
+use App\Http\Controllers\ProviderNotificationsController;
+use App\Http\Controllers\CustomerNotificationsController;
+use App\Http\Controllers\ProviderServicesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,6 +53,13 @@ Route::apiResource('/categories',CategoriesController::class);
 Route::apiResource('/category-services',CategoryServiceController::class);
 Route::apiResource('/provider-reviews',ProviderReviewsController::class);
 Route::apiResource('/customer-reviews',CustomerReviewsController::class);
+Route::apiResource('/booking-reviews',BookingReviewsController::class);
+
+Route::apiResource('/provider-services',ProviderServicesController::class);
+Route::post('/provider-services-by-categoryname', [ProviderServicesController::class,'showProviderServicesByCategory']);
+
+Route::apiResource('/customer-notifications',CustomerNotificationsController::class);
+Route::apiResource('/provider-notifications',ProviderNotificationsController::class);
 
 Route::get('/provider-incoming-requests/{id}', [ProviderIncomingRequestsController::class,'getProviderIncomingRequests']);
 Route::post('/reject-request', [ProviderIncomingRequestsController::class,'onRejectRequest']);
