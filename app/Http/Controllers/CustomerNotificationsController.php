@@ -33,6 +33,21 @@ class CustomerNotificationsController extends Controller
             'message' => 'Record not found.'
         ], 404);
     }
+    public function update($id,Request $request){
+        $data = $request->validate([
+            'provider_id' => 'sometimes',
+            'customer_id' => 'sometimes',
+            'booking_id' => 'sometimes',
+            'category' => 'sometimes',
+            'description' => 'sometimes',
+            'status' => 'sometimes',
+        ]);
+        $n = CustomerNotifications::whereId($id)->first();
+        $collection = collect($data)->filter()->all();
+        $new = $n->update($collection);
+        return $new;
+        //return $new;
+    }
     public function index(){
         $user = CustomerNotifications::all();
         return $user;
