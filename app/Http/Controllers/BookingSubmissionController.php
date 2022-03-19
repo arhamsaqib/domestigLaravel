@@ -42,7 +42,7 @@ class BookingSubmissionController extends Controller
     }
     public function show($id){
 
-        $user = BookingSubmission::whereId($id)->first();
+        $user = BookingSubmission::whereBooking_id($id)->first();
         if(isset($user)){
             return $user;
         }

@@ -28,6 +28,35 @@ class BookingReviewsController extends Controller
                         'provider_reviews.review','provider_reviews.stars','provider_reviews.booking_id','provider_reviews.created_at')
             ->first();
 
+            if(!isset($prov) && !isset($cust)){
+                return response()->json([
+                    'message' => 'Record not found.'
+                ], 404);
+            }
+            if(isset($prov) && !isset($cust)){
+                $r=[
+                    'customer_avatar'    => $prov->customer_avatar,
+                    'customer_name'      => $prov->customer_name,
+                    'customer_id'        => $booking->customer_id,
+                    'provider_id'        => $booking->provider_id,
+                    'booking_id'         => $booking->id,
+                    'review_to_provider' => $prov->review,
+                ];
+                return $r;
+            }
+            if(!isset($prov) && isset($cust)){
+                $r=[
+            
+                    'customer_id'        => $booking->customer_id,
+                    'provider_id'        => $booking->provider_id,
+                    'booking_id'         => $booking->id,
+                    'provider_avatar'    => $cust->provider_avatar,
+                    'review_to_customer' => $cust->review,
+                    'provider_name'      => $cust->provider_name,
+                ];
+                return $r;
+            }
+           
             $rev = [
                 'review_to_customer' => $cust->review,
                 'review_to_provider' => $prov->review,

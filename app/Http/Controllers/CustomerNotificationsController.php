@@ -56,4 +56,8 @@ class CustomerNotificationsController extends Controller
         $user = CustomerNotifications::where('id', $id)->delete();
         return $user;
     }
+    public function getCustomerUnreadNotificationCount($id){
+        $c = CustomerNotifications::where(['customer_id'=>$id,'status'=>'unread'])->count();
+        return $c;
+    }
 }

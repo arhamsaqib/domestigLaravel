@@ -59,6 +59,7 @@ Route::apiResource('/booking-reviews',BookingReviewsController::class);
 Route::apiResource('/provider-services',ProviderServicesController::class);
 Route::post('/provider-services-by-categoryname', [ProviderServicesController::class,'showProviderServicesByCategory']);
 
+Route::get('/customer-notification-count/{id}', [CustomerNotificationsController::class,'getCustomerUnreadNotificationCount']);
 Route::apiResource('/customer-notifications',CustomerNotificationsController::class);
 Route::apiResource('/provider-notifications',ProviderNotificationsController::class);
 

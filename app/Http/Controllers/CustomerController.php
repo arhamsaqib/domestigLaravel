@@ -20,19 +20,6 @@ class CustomerController extends Controller
             'fuid' => 'required',
             'status' => 'required'
         ]);
-
-        // $new= Customer::create([
-        //     'name' => $request->name,
-        //     'email' => $request->email,
-        //     'phone' => $request->phone,
-        //     'country' => $request->country,
-        //     'location' => $request->location,
-        //     'avatar' => $request->avatar,
-        //     'longitude' => $request->longitude,
-        //     'latitude' => $request->latitude,
-        //     'fuid' => $request->fuid,
-        //     'status' => 'active',
-        // ]);
         $collection = collect($data)->filter()->all();
         $new = Customer::create($collection);
         return $new;
@@ -49,6 +36,20 @@ class CustomerController extends Controller
         return response()->json([
             'message' => 'Record not found.'
         ], 404);
+    }
+    public function update($id,Request $request){
+        $data = $request->validate([
+            'phone' => 'sometimes',
+            'country' => 'sometimes',
+            'location' => 'sometimes',
+            'avatar' => 'sometimes',
+            'longitude' => 'sometimes',
+            'latitude' => 'sometimes',
+        ]);
+        $customer = Customer::whereId($id)->first();
+        $collection = collect($data)->filter()->all();
+        $new = $customer->update($collection);
+        return $new;
     }
     public function index(){
         $user = Customer::all();
