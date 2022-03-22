@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Bookings;
+use App\Models\Providers;
+use App\Models\Customer;
 
 
 
@@ -79,8 +81,19 @@ class BookingsController extends Controller
         ], 404);
     }
     public function index(){
-        $user = Bookings::all();
-        return $user;
+        $bkn = Bookings::all();
+        $arr = [];
+        foreach ($bkn as $b) {
+            $p = Providers::whereId($b->provider_id)->first();
+            $c = Customer::whereId($b->customer_id)->first();
+            $arr[] = [
+                'bookingInfo' => $b,
+                'providerInfo' => $p,
+                'customerInfo' => $c,
+            ];
+        }
+
+        return $arr;
     }
     public function destroy($id){
         $user = Bookings::where('id', $id)->delete();

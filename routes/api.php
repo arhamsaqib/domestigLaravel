@@ -22,6 +22,9 @@ use App\Http\Controllers\ProviderNotificationsController;
 use App\Http\Controllers\CustomerNotificationsController;
 use App\Http\Controllers\ProviderServicesController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\ServicesController;
+use App\Http\Controllers\NewCategoryController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -55,6 +58,7 @@ Route::apiResource('/category-services',CategoryServiceController::class);
 Route::apiResource('/provider-reviews',ProviderReviewsController::class);
 Route::apiResource('/customer-reviews',CustomerReviewsController::class);
 Route::apiResource('/booking-reviews',BookingReviewsController::class);
+Route::apiResource('/new-category',NewCategoryController::class);
 
 Route::apiResource('/provider-services',ProviderServicesController::class);
 Route::post('/provider-services-by-categoryname', [ProviderServicesController::class,'showProviderServicesByCategory']);
@@ -79,3 +83,7 @@ Route::post('/show-booking-submission', [BookingSubmissionController::class,'sho
 Route::post('/messages', [ChatsController::class,'sendMessage']);
 Route::post('/fetch-messages', [ChatsController::class,'fetchMessages']);
 Route::post('/upload-image', [ImageController::class,'addimage']);
+
+
+//Admin API's
+Route::apiResource('/services',ServicesController::class);
