@@ -24,6 +24,7 @@ use App\Http\Controllers\ProviderServicesController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\NewCategoryController;
+use App\Http\Controllers\FindProviderByLocationController;
 
 
 /*
@@ -45,6 +46,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::apiResource('/admin',AdminController::class);
 Route::apiResource('/customer',CustomerController::class);
 Route::apiResource('/provider',ProviderController::class);
+Route::apiResource('/provider-by-location',FindProviderByLocationController::class);
 
 Route::apiResource('/bookings',BookingsController::class);
 Route::get('/show-provider-bookings/{providerId}', [BookingsController::class,'providerBookings']);
