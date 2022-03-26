@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Customer;
+use App\Models\CustomerReviews;
 
 class CustomerController extends Controller
 {
@@ -65,7 +66,10 @@ class CustomerController extends Controller
         //$user = User::find($id);
         $user = Customer::whereId($id)->first();
         if(isset($user)){
-            return $user;
+            $rating = CustomerReviews::whereCustomer_id($id)->avg('stars');
+            $c = collect($user);
+            $c->put('rating', $rating);
+            return $c->all();
         }
     
         return response()->json([

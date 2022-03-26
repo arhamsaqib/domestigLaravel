@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Providers;
+use App\Models\ProviderReviews;
 
 class FindProviderByLocationController extends Controller
 {
@@ -25,8 +26,16 @@ class FindProviderByLocationController extends Controller
         ->offset(0)
         ->limit(20)
         ->get();
+        
+        $arr = [];
+        foreach ($doctors as $p) {
+          $rating = ProviderReviews::whereProvider_id($p->id)->avg('stars');
+          $c = collect($p);
+          $c->put('rating', $rating);
+          $arr[] = $c->all();
+        }
 
-        return $doctors;
+        return $arr;
 
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Providers;
+use App\Models\ProviderReviews;
 
 class ProviderController extends Controller
 {
@@ -64,7 +65,10 @@ class ProviderController extends Controller
         //$user = User::find($id);
         $user = Providers::whereId($id)->first();
         if(isset($user)){
-            return $user;
+            $rating = ProviderReviews::whereProvider_id($id)->avg('stars');
+            $c = collect($user);
+            $c->put('rating', $rating);
+            return $c->all();
         }
     
         return response()->json([
