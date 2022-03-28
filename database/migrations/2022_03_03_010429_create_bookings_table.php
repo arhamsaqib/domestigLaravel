@@ -32,6 +32,7 @@ return new class extends Migration
             $table->string('location')->nullable();
             $table->string('longitude')->nullable();
             $table->string('latitude')->nullable();
+            $table->string('coupon')->nullable();
             $table->timestamps();
         });
     }
