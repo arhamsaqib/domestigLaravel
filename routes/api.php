@@ -25,6 +25,8 @@ use App\Http\Controllers\ImageController;
 use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\NewCategoryController;
 use App\Http\Controllers\FindProviderByLocationController;
+use App\Http\Controllers\CustomerActiveBookingController;
+use App\Http\Controllers\CustomerAddressesController;
 
 
 /*
@@ -61,6 +63,8 @@ Route::apiResource('/provider-reviews',ProviderReviewsController::class);
 Route::apiResource('/customer-reviews',CustomerReviewsController::class);
 Route::apiResource('/booking-reviews',BookingReviewsController::class);
 Route::apiResource('/new-category',NewCategoryController::class);
+Route::apiResource('/customer-active-booking',CustomerActiveBookingController::class);
+Route::apiResource('/customer-addresses',CustomerAddressesController::class);
 
 Route::apiResource('/provider-services',ProviderServicesController::class);
 Route::post('/provider-services-by-categoryname', [ProviderServicesController::class,'showProviderServicesByCategory']);
