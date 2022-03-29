@@ -30,6 +30,8 @@ use App\Http\Controllers\CustomerAddressesController;
 use App\Http\Controllers\BannersController;
 use App\Http\Controllers\RecommendedServicesController;
 use App\Http\Controllers\ProviderDocumentsController;
+use App\Http\Controllers\VersionCController;
+use App\Http\Controllers\VersionPController;
 
 
 /*
@@ -52,6 +54,9 @@ Route::apiResource('/admin',AdminController::class);
 Route::apiResource('/customer',CustomerController::class);
 Route::apiResource('/provider',ProviderController::class);
 Route::apiResource('/provider-by-location',FindProviderByLocationController::class);
+
+Route::apiResource('/version-c',VersionCController::class);
+Route::apiResource('/version-p',VersionPController::class);
 
 Route::apiResource('/bookings',BookingsController::class);
 Route::get('/show-provider-bookings/{providerId}', [BookingsController::class,'providerBookings']);
