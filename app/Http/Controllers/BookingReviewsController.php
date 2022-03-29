@@ -41,6 +41,7 @@ class BookingReviewsController extends Controller
                     'provider_id'        => $booking->provider_id,
                     'booking_id'         => $booking->id,
                     'review_to_provider' => $prov->review,
+                    'provider_stars'     => $prov->stars,
                 ];
                 return $r;
             }
@@ -53,6 +54,7 @@ class BookingReviewsController extends Controller
                     'provider_avatar'    => $cust->provider_avatar,
                     'review_to_customer' => $cust->review,
                     'provider_name'      => $cust->provider_name,
+                    'customer_stars'     => $cust->stars,
                 ];
                 return $r;
             }
@@ -67,6 +69,8 @@ class BookingReviewsController extends Controller
                 'customer_id'        => $booking->customer_id,
                 'provider_id'        => $booking->provider_id,
                 'booking_id'         => $booking->id,
+                'customer_stars'     => $cust->stars,
+                'provider_stars'     => $prov->stars,
             ];
 
             return $rev;

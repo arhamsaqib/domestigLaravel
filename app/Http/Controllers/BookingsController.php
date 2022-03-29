@@ -31,6 +31,7 @@ class BookingsController extends Controller
             'location' => 'sometimes',
             'status' => 'sometimes|string',
             'coupon' => 'sometimes|string',
+            'rate' => 'sometimes|string',
         ]);
         
         $collection = collect($data)->filter()->all();

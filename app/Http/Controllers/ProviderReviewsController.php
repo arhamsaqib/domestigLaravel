@@ -24,10 +24,21 @@ class ProviderReviewsController extends Controller
 
         //$user = User::find($id);
         $user = ProviderReviews::whereProvider_id($id)->get();
-        if(isset($user)){
-            return $user;
-        }
-    
+        // if(isset($user)){
+        //     return $user;
+        // }
+
+             //$user = User::find($id);
+             $user = ProviderReviews::whereProvider_id($id)
+             ->join('customers','customers.id','=','provider_reviews.customer_id')
+             ->select('customers.name as customer_name','customers.avatar as customer_avatar','provider_reviews.provider_id','provider_reviews.customer_id',
+                         'provider_reviews.review','provider_reviews.stars','provider_reviews.booking_id','provider_reviews.created_at')
+             ->get();
+            if(isset($user)){
+                return $user;
+            }
+        
+            
         return response()->json([
             'message' => 'Record not found.'
         ], 404);

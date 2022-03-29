@@ -28,6 +28,8 @@ use App\Http\Controllers\FindProviderByLocationController;
 use App\Http\Controllers\CustomerActiveBookingController;
 use App\Http\Controllers\CustomerAddressesController;
 use App\Http\Controllers\BannersController;
+use App\Http\Controllers\RecommendedServicesController;
+use App\Http\Controllers\ProviderDocumentsController;
 
 
 /*
@@ -67,6 +69,8 @@ Route::apiResource('/new-category',NewCategoryController::class);
 Route::apiResource('/customer-active-booking',CustomerActiveBookingController::class);
 Route::apiResource('/customer-addresses',CustomerAddressesController::class);
 Route::apiResource('/banners',BannersController::class);
+Route::apiResource('/recommended',RecommendedServicesController::class);
+Route::apiResource('/provider-documents',ProviderDocumentsController::class);
 
 Route::apiResource('/provider-services',ProviderServicesController::class);
 Route::post('/provider-services-by-categoryname', [ProviderServicesController::class,'showProviderServicesByCategory']);
