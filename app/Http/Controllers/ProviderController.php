@@ -19,7 +19,8 @@ class ProviderController extends Controller
             'longitude' => 'sometimes',
             'latitude' => 'sometimes',
             'fuid' => 'required',
-            'status' =>'required'
+            'status' =>'required',
+            'working_status' => 'required',
         ]);
         $collection = collect($data)->filter()->all();
         $new = Providers::create($collection);
