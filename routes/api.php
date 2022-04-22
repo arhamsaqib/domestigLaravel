@@ -32,6 +32,7 @@ use App\Http\Controllers\RecommendedServicesController;
 use App\Http\Controllers\ProviderDocumentsController;
 use App\Http\Controllers\VersionCController;
 use App\Http\Controllers\VersionPController;
+use App\Http\Controllers\DashboardController;
 
 
 /*
@@ -76,6 +77,7 @@ Route::apiResource('/customer-addresses',CustomerAddressesController::class);
 Route::apiResource('/banners',BannersController::class);
 Route::apiResource('/recommended',RecommendedServicesController::class);
 Route::apiResource('/provider-documents',ProviderDocumentsController::class);
+Route::apiResource('/dashboard-stats',DashboardController::class);
 
 Route::apiResource('/provider-services',ProviderServicesController::class);
 Route::post('/provider-services-by-categoryname', [ProviderServicesController::class,'showProviderServicesByCategory']);
