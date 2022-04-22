@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\BookingRequests;
+use App\Events\IncommingRequestEvent;
 
 class BookingRequestController extends Controller
 {
@@ -23,6 +24,13 @@ class BookingRequestController extends Controller
               ]);
     
             $container->save();
+
+            $c = 'requestFor'.$data['id'];
+            $data = [
+                'refresh' => 'true'
+            ];
+            event(new IncommingRequestEvent($c,$data));
+
         }
     
         return response()->json('Successfully added');
