@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\BookingSubmission;
+use App\Events\CustomerBookingUpdate;
 
 
 class BookingSubmissionController extends Controller
@@ -19,11 +20,15 @@ class BookingSubmissionController extends Controller
         
         $collection = collect($data)->filter()->all();
         $new = BookingSubmission::create($collection);
+        $c = 'booking'.$request->booking_id;
+        $data = [
+            'refresh' => 'true'
+        ];
+        event(new CustomerBookingUpdate($c,$data));
         return $new;
      
     }
     public function update($bookingId,Request $request){
-       // return 'update time';
         $data = $request->validate([
             'booking_id' => 'required',
             'provider_id' => 'required',
@@ -32,11 +37,18 @@ class BookingSubmissionController extends Controller
             'after_work_image' => 'sometimes',
         ]);
 
+        //return $request;
+
         $booking = BookingSubmission::where(['booking_id'=>$bookingId,'provider_id'=>$request->provider_id])->first();
         
         $collection = collect($data)->filter()->all();
 
         $new = $booking->update($collection);
+        $c = 'booking'.$bookingId;
+        $data = [
+            'refresh' => 'true'
+        ];
+        event(new CustomerBookingUpdate($c,$data));
         return $new;
      
     }

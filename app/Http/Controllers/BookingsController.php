@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Bookings;
 use App\Models\Providers;
 use App\Models\Customer;
+use App\Events\CustomerBookingUpdate;
 
 
 
@@ -30,7 +31,7 @@ class BookingsController extends Controller
             'services' => 'sometimes',
             'location' => 'sometimes',
             'status' => 'sometimes|string',
-            'coupon' => 'sometimes|string',
+            'coupon' => 'sometimes',
             'rate' => 'sometimes|string',
         ]);
         
@@ -94,7 +95,14 @@ class BookingsController extends Controller
                 'customerInfo' => $c,
             ];
         }
-
+        //  $a= 1;
+        // $b = 'as';
+        // $c = 'asd'.$b;
+        // $c = $a.$b.$c;
+        // $data = [
+        //     'refresh' => 'true'
+        // ];
+        // event(new CustomerBookingUpdate($c,$data));
         return $arr;
     }
     public function destroy($id){

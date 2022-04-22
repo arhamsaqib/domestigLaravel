@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Bookings;
+use App\Events\CustomerBookingUpdate;
 
 class CustomerActiveBookingController extends Controller
 {

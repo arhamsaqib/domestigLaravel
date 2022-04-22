@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Bookings;
 use App\Models\BookingRequests;
 use Illuminate\Support\Facades\DB;
+use App\Events\CustomerBookingUpdate;
 
 class ProviderIncomingRequestsController extends Controller
 {
@@ -43,7 +44,14 @@ class ProviderIncomingRequestsController extends Controller
         $nullOthers = BookingRequests::where(['booking_id'=>$bookingId])->update(['status'=>'closed']);
         $accept = BookingRequests::where(['provider_id'=>$providerId,'booking_id'=>$bookingId])->update(['status'=>'accepted']);
         $acceptBooking = Bookings::where(['id'=>$bookingId])->update(['status'=>'in-progress','provider_id'=>$providerId]);
-        return $reject;
+        
+
+        $c = 'booking'.$bookingId;
+        $data = [
+            'refresh' => 'true'
+        ];
+        event(new CustomerBookingUpdate($c,$data));
+        return $accept;
     }
     
     public function viewProviderInprogressBooking($id){
@@ -61,6 +69,11 @@ class ProviderIncomingRequestsController extends Controller
     public function markBookingAsVerified($id){
         
         $booking = Bookings::whereId($id)->update(['verified'=>'true']);
+        $c = 'booking'.$id;
+        $data = [
+            'refresh' => 'true'
+        ];
+        event(new CustomerBookingUpdate($c,$data));
         return $booking;
     }
 }
