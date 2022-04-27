@@ -60,4 +60,8 @@ class CustomerNotificationsController extends Controller
         $c = CustomerNotifications::where(['customer_id'=>$id,'status'=>'unread'])->count();
         return $c;
     }
+    public function markAsReadNotificationsCustomer($id){
+        $c = CustomerNotifications::where(['customer_id'=>$id])->update(['status'=>'read']);
+        return $c;
+    }
 }

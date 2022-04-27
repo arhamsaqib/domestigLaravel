@@ -56,4 +56,8 @@ class ProviderNotificationsController extends Controller
         $user = ProviderNotifications::where('id', $id)->delete();
         return $user;
     }
+    public function markAsReadNotificationsProvider($id){
+        $c = ProviderNotifications::where(['provider_id'=>$id])->update(['status'=>'read']);
+        return $c;
+    }
 }

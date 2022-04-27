@@ -83,6 +83,8 @@ Route::apiResource('/provider-services',ProviderServicesController::class);
 Route::post('/provider-services-by-categoryname', [ProviderServicesController::class,'showProviderServicesByCategory']);
 
 Route::get('/customer-notification-count/{id}', [CustomerNotificationsController::class,'getCustomerUnreadNotificationCount']);
+Route::get('/provider-mark-read-notifications/{id}', [ProviderNotificationsController::class,'markAsReadNotificationsProvider']);
+Route::get('/customer-mark-read-notifications/{id}', [CustomerNotificationsController::class,'markAsReadNotificationsCustomer']);
 Route::apiResource('/customer-notifications',CustomerNotificationsController::class);
 Route::apiResource('/provider-notifications',ProviderNotificationsController::class);
 
