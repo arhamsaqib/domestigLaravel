@@ -33,6 +33,7 @@ use App\Http\Controllers\ProviderDocumentsController;
 use App\Http\Controllers\VersionCController;
 use App\Http\Controllers\VersionPController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\UserReferralController;
 
 
 /*
@@ -58,6 +59,9 @@ Route::apiResource('/provider-by-location',FindProviderByLocationController::cla
 
 Route::apiResource('/version-c',VersionCController::class);
 Route::apiResource('/version-p',VersionPController::class);
+
+Route::apiResource('/user-referrals',UserReferralController::class);
+Route::post('/find-user-referral', [UserReferralController::class,'findUserReferral']);
 
 Route::apiResource('/bookings',BookingsController::class);
 Route::get('/show-provider-bookings/{providerId}', [BookingsController::class,'providerBookings']);

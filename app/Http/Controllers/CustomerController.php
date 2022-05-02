@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Customer;
 use App\Models\CustomerReviews;
+use App\Models\UserReferrals;
 
 class CustomerController extends Controller
 {
@@ -23,6 +24,21 @@ class CustomerController extends Controller
         ]);
         $collection = collect($data)->filter()->all();
         $new = Customer::create($collection);
+
+        if(isset($new)){
+            $numcode = strval($this->generateRandomNumber());
+            $initial="DO";
+            $end="C";
+            $name = strtoupper(substr($request->name, 0, 2));
+            $code = $initial.$name.$numcode.$end;
+            $c = UserReferrals::create([
+                'uid' => $new['id'],
+                'user_type' => 'customer',
+                'code' => $code,
+                'numcode' => $numcode,
+            ]);
+        }
+
         return $new;
         //return $new;
     }
@@ -76,4 +92,30 @@ class CustomerController extends Controller
             'message' => 'Record not found.'
         ], 404);
     }
+
+    // *** ------------ referral section
+
+    function generateRandomNumber() {
+        $number = mt_rand(100000, 999999); // better than rand()
+    
+        // call the same function if the barcode exists already
+        if ($this->nameExists($number)) {
+            return $this->generateRandomNumber();
+        }
+    
+        // otherwise, it's valid and can be used
+        return $number;
+    }
+    function nameExists($number) {
+        // query the database and return a boolean
+        // for instance, it might look like this in Laravel
+        return UserReferrals::whereNumcode($number)->exists();
+    }
+
+
+
+
+
+    // *** ------------ referral section
+
 }
