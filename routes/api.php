@@ -66,6 +66,8 @@ Route::post('/find-user-referral', [UserReferralController::class,'findUserRefer
 Route::apiResource('/bookings',BookingsController::class);
 Route::get('/show-provider-bookings/{providerId}', [BookingsController::class,'providerBookings']);
 
+Route::get('/find-invoices', [InvoicesController::class,'findInvoices']);
+
 Route::apiResource('/booking-submission',BookingSubmissionController::class);
 Route::apiResource('/booking-requests',BookingRequestController::class);
 Route::apiResource('/provider-gallery',ProviderGalleryController::class);

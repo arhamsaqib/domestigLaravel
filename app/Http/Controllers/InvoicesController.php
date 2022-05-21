@@ -23,6 +23,18 @@ class InvoicesController extends Controller
         return $new;
      
     }
+    public function findInvoices(Request $request){
+        $data = $request->validate([
+            'booking_id' => 'sometimes',
+            'provider_id' => 'sometimes',
+            'customer_id' => 'sometimes',
+        ]);
+        
+        $collection = collect($data)->filter()->all();
+        $new = Invoices::where($collection)->get();
+        return $new;
+     
+    }
     public function show($id){
 
         $user = Invoices::whereBooking_id($id)->first();
