@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('verified')->nullable();
             $table->string('instructions')->nullable();
             $table->string('instructions_image')->nullable();
-            //$table->string('services')->nullable();
+            $table->string('current')->nullable();
             $table->string('time')->nullable();
             $table->string('date')->nullable();
             $table->string('status')->nullable();

@@ -71,6 +71,8 @@ Route::apiResource('/bookings',BookingsController::class);
 Route::get('/show-provider-bookings/{providerId}', [BookingsController::class,'providerBookings']);
 Route::get('/get-booking-by-id/{bookingId}', [BookingsController::class,'getbookingById']);
 
+Route::get('/get-customer-open-booking/{customerId}', [CustomerActiveBookingController::class,'customerOpenBooking']);
+
 Route::get('/find-invoices', [InvoicesController::class,'findInvoices']);
 
 Route::apiResource('/booking-submission',BookingSubmissionController::class);

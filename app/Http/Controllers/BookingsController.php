@@ -32,6 +32,7 @@ class BookingsController extends Controller
             'location' => 'sometimes',
             'status' => 'sometimes|string',
             'coupon' => 'sometimes',
+            'current' => 'sometimes',
             'rate' => 'sometimes|string',
         ]);
         
@@ -51,6 +52,7 @@ class BookingsController extends Controller
             'services' => 'sometimes',
             'location' => 'sometimes',
             'status' => 'sometimes',
+            'current' => 'sometimes',
         ]);
  
         $booking = Bookings::where(['id'=>$bookingId])->first();

@@ -31,6 +31,7 @@ class CustomerActiveBookingController extends Controller
     public function update($bookingId,Request $request){
         $data = $request->validate([
             'status' => 'sometimes',
+            'current' => 'sometimes',
         ]);
  
         $booking = Bookings::where(['id'=>$bookingId])->first();
@@ -70,5 +71,19 @@ class CustomerActiveBookingController extends Controller
     public function destroy($id){
         $user = Bookings::where('id', $id)->delete();
         return $user;
+    }
+    public function customerOpenBooking($customerId){
+        
+        $new = Bookings::where(['customer_id'=>$customerId,'current'=>'open'])->first();
+
+        if(isset($new))
+        {
+            return $new;
+        }
+
+        return response()->json([
+            'message' => 'No active bookings found.'
+        ], 404);
+        
     }
 }
