@@ -17,7 +17,7 @@ class ProviderIncomingRequestsController extends Controller
                         ])
                 ->join('bookings','booking_requests.booking_id','=','bookings.id')
                 ->select('bookings.id as booking_id','booking_requests.provider_id','bookings.services as bookingServices',
-                         'bookings.date','bookings.time', 'bookings.category_name', 'bookings.customer_id', 'bookings.location', 'bookings.verification_code' , 'booking_requests.status as bookingStatus' ,'bookings.instructions as instructions')
+                         'bookings.date','bookings.time', 'bookings.category_name', 'bookings.customer_id', 'bookings.location', 'bookings.verification_code' , 'booking_requests.status as bookingStatus' ,'bookings.instructions as instructions', 'booking_requests.rate as rate')
                 ->get();
         return $all;
     }
@@ -37,13 +37,14 @@ class ProviderIncomingRequestsController extends Controller
         $request->validate([
             'provider_id' => 'required',
             'booking_id' => 'required',
+            'rate' => 'sometimes',
         ]);
         $providerId = $request->provider_id;
         $bookingId = $request->booking_id;
         
         $nullOthers = BookingRequests::where(['booking_id'=>$bookingId])->update(['status'=>'closed']);
         $accept = BookingRequests::where(['provider_id'=>$providerId,'booking_id'=>$bookingId])->update(['status'=>'accepted']);
-        $acceptBooking = Bookings::where(['id'=>$bookingId])->update(['status'=>'in-progress','provider_id'=>$providerId]);
+        $acceptBooking = Bookings::where(['id'=>$bookingId])->update(['status'=>'in-progress','provider_id'=>$providerId,'rate'=>$request->rate]);
         
 
         $c = 'booking'.$bookingId;

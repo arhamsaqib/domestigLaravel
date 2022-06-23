@@ -34,6 +34,8 @@ use App\Http\Controllers\VersionCController;
 use App\Http\Controllers\VersionPController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserReferralController;
+use App\Http\Controllers\CardStatusController;
+use App\Http\Controllers\PaymentHistoryController;
 
 
 /*
@@ -52,10 +54,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
+Route::apiResource('/card-status',CardStatusController::class);
 Route::apiResource('/admin',AdminController::class);
 Route::apiResource('/customer',CustomerController::class);
 Route::apiResource('/provider',ProviderController::class);
 Route::apiResource('/provider-by-location',FindProviderByLocationController::class);
+Route::apiResource('/payment-history',PaymentHistoryController::class);
 
 Route::apiResource('/version-c',VersionCController::class);
 Route::apiResource('/version-p',VersionPController::class);
@@ -65,6 +69,7 @@ Route::post('/find-user-referral', [UserReferralController::class,'findUserRefer
 
 Route::apiResource('/bookings',BookingsController::class);
 Route::get('/show-provider-bookings/{providerId}', [BookingsController::class,'providerBookings']);
+Route::get('/get-booking-by-id/{bookingId}', [BookingsController::class,'getbookingById']);
 
 Route::get('/find-invoices', [InvoicesController::class,'findInvoices']);
 

@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('status');
             $table->string('working_status');
             $table->string('fuid');
+            $table->string('stripeId')->nullable();
             $table->string('longitude')->nullable();
             $table->string('latitude')->nullable();
             $table->timestamp('email_verified_at')->nullable();

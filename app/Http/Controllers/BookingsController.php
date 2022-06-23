@@ -72,6 +72,17 @@ class BookingsController extends Controller
             'message' => 'Record not found.'
         ], 404);
     }
+    public function getbookingById($id){
+
+        $user = Bookings::whereId($id)->first();
+        if(isset($user)){
+            return $user;
+        }
+    
+        return response()->json([
+            'message' => 'Record not found.'
+        ], 404);
+    }
     public function providerBookings($id){
 
         $user = Bookings::whereProvider_id($id)->get();

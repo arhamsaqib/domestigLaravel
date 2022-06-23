@@ -21,6 +21,7 @@ class ProviderController extends Controller
             'fuid' => 'required',
             'status' =>'required',
             'working_status' => 'required',
+            'stripeId' => 'sometimes',
         ]);
         $collection = collect($data)->filter()->all();
         $new = Providers::create($collection);

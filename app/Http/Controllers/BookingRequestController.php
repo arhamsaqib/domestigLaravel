@@ -20,6 +20,7 @@ class BookingRequestController extends Controller
             $container = new BookingRequests([
                 'booking_id' => $request->booking_id,
                 'provider_id' => $data['id'],
+                'rate' => $data['rate'],
                 'status' => 'pending'
               ]);
     

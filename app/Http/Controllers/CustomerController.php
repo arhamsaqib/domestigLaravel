@@ -20,7 +20,8 @@ class CustomerController extends Controller
             'longitude' => 'sometimes',
             'latitude' => 'sometimes',
             'fuid' => 'required',
-            'status' => 'required'
+            'status' => 'required',
+            'stripeId' => 'sometimes'
         ]);
         $collection = collect($data)->filter()->all();
         $new = Customer::create($collection);
